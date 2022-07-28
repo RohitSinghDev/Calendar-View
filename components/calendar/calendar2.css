@@ -1,0 +1,134 @@
+.calendar-container,
+.calendar,
+.calendar-header,
+td,
+tr {
+  padding: 0;
+  margin: 0;
+}
+
+.calendar-container {
+  border: 2px solid skyblue;
+  width: 600px;
+  height: 400px;
+}
+
+.calendar {
+  background-color: white;
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.calendar-header {
+  border-bottom: 1px dashed skyblue;
+  font-size: 1.6em;
+}
+
+.calendar-header td {
+  border-spacing: 0;
+  padding-left: 5px;
+}
+
+.day,
+.empty-slot,
+.week-day {
+  text-align: center;
+  height: 40px;
+}
+
+.week-day {
+  font-size: 0.8em;
+}
+
+.day {
+  font-size: 0.9em;
+}
+
+.day {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  line-height: 24px;
+}
+
+.current-day {
+  background-color: #1bf50c;
+  width: 40px;
+  height: 40px;
+  line-height: 28px;
+  border-radius: 2%;
+  color: white;
+}
+.selected-day {
+  background-color: yellow;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 2%;
+  color: black;
+}
+
+.month-popup {
+  position: absolute;
+  padding: 5px;
+  background: white;
+  border: 2px solid skyblue;
+}
+
+.month-popup div {
+  padding: 0.3em;
+}
+
+.nav-month {
+  position: absolute;
+  top: 0.6em;
+  font-size: 0.6em;
+  right: 3px;
+}
+
+.prev {
+}
+
+.next {
+}
+
+.editor-year {
+  max-width: 3.6em;
+}
+
+.label-month,
+.label-year {
+  font-size: 0.6em;
+  cursor: pointer;
+}
+
+.div3 {
+  display: flex;
+  padding-left: 30px;
+}
+
+.container1 {
+  height: 8px;
+  background-color: rgb(10, 199, 252);
+  display: inline-block;
+  padding: 0px;
+  margin: 0px;
+}
+
+.container2 {
+  height: 8px;
+  background-color: rgb(243, 50, 12);
+  display: inline-block;
+  padding: 0px;
+  margin: 0px;
+}
+
+.prevButton {
+  float: left;
+  margin-top: 8px;
+}
+
+.nextButton {
+  float: right;
+}
