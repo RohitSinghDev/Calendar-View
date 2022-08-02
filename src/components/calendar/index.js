@@ -143,10 +143,24 @@ const Calendar = (props) => {
         <div className="container2" style={{ width: `${size2}px` }}></div>
       </div>
     );
-    let className =
-      d == currentDate() && reqMonth == month() && reqYear == year()
-        ? "day current-day"
-        : "day";
+    let className;
+    // d == currentDate() && reqMonth == month() && reqYear == year()
+    //   ? "day current-day"
+    //   : "day";
+    if (d == currentDate() && reqMonth == month() && reqYear == year()) {
+      className = "day current-day";
+    } else if (
+      parseInt(reqYear) > parseInt(year()) ||
+      (parseInt(reqYear) == parseInt(year()) &&
+        months.indexOf(reqMonth) > months.indexOf(month())) ||
+      (parseInt(reqYear) == parseInt(year()) &&
+        months.indexOf(reqMonth) == months.indexOf(month()) &&
+        d > currentDate())
+    ) {
+      className = "day_after_today";
+    } else {
+      className = "day";
+    }
     datesOfMonth.push(
       <td key={d} className={className}>
         {d}
@@ -183,6 +197,17 @@ const Calendar = (props) => {
   });
 
   const monthOptions = months.map((m) => {
+    if (
+      parseInt(reqYear) > parseInt(year()) ||
+      (parseInt(reqYear) == parseInt(year()) &&
+        months.indexOf(m) > months.indexOf(month()))
+    ) {
+      return (
+        <option key={m} value={m} disabled>
+          <b>{m}</b>
+        </option>
+      );
+    }
     return (
       <option key={m} value={m}>
         {m}
@@ -193,7 +218,7 @@ const Calendar = (props) => {
   const yearOptions = [];
 
   const yearOptionsFunction = () => {
-    for (let i = 1990; i < 2051; i++) {
+    for (let i = 1990; i <= parseInt(year()); i++) {
       yearOptions.push(
         <option key={i} value={i}>
           {i}
@@ -204,19 +229,26 @@ const Calendar = (props) => {
   };
 
   const nextMonth = () => {
-    let curr = months.indexOf(reqMonth);
-    let curr3 = parseInt(reqYear);
-    if (curr == 11) {
-      setReqMonth(months[0]);
-      // console.log(reqYear);
-      if (reqYear != 2050) {
-        curr3 += 1;
-        setReqYear(curr3.toString());
-      } else {
-        setReqYear(1990);
-      }
+    if (
+      parseInt(reqYear) == parseInt(year()) &&
+      months.indexOf(reqMonth) == months.indexOf(month())
+    ) {
+      return;
     } else {
-      setReqMonth(months[curr + 1]);
+      let curr = months.indexOf(reqMonth);
+      let curr3 = parseInt(reqYear);
+      if (curr == 11) {
+        setReqMonth(months[0]);
+        // console.log(reqYear);
+        if (reqYear != 2050) {
+          curr3 += 1;
+          setReqYear(curr3.toString());
+        } else {
+          setReqYear(1990);
+        }
+      } else {
+        setReqMonth(months[curr + 1]);
+      }
     }
   };
 
@@ -227,12 +259,16 @@ const Calendar = (props) => {
       if (reqYear != 1990) {
         setReqYear((prevYear) => prevYear - 1);
       } else {
-        setReqYear(2050);
+        setReqYear(year());
+        setReqMonth(month());
       }
     } else {
       setReqMonth(months[curr2 - 1]);
     }
   };
+
+  const next = ">";
+  const prev = "<";
 
   return (
     <>
@@ -241,9 +277,7 @@ const Calendar = (props) => {
           <thead>
             <tr className="calendar-header">
               <td colSpan="5">
-                <button onClick={prevMonth} className="prevButton">
-                  prev
-                </button>
+                <div onClick={prevMonth} className="arrow2"></div>
 
                 {/* dropdown for selecting month */}
 
@@ -283,9 +317,7 @@ const Calendar = (props) => {
               </td>
 
               <td colSpan="2" className="nav-month">
-                <button onClick={nextMonth} className="nextButton">
-                  next
-                </button>
+                <div onClick={nextMonth} className="arrow"></div>
               </td>
             </tr>
           </thead>
@@ -300,3 +332,4 @@ const Calendar = (props) => {
 };
 
 export default Calendar;
+
