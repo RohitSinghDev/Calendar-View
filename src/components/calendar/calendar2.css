@@ -8,7 +8,10 @@ tr {
 }
 
 .calendar-container {
-  border: 2px solid skyblue;
+  border-top: 2px solid skyblue;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
   width: 600px;
   height: 400px;
 }
@@ -21,7 +24,7 @@ tr {
 }
 
 .calendar-header {
-  border-bottom: 1px dashed skyblue;
+  border-bottom: 1px solid black;
   font-size: 1.6em;
 }
 
@@ -38,7 +41,7 @@ tr {
 }
 
 .week-day {
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .day {
@@ -50,15 +53,27 @@ tr {
   width: 50px;
   height: 50px;
   line-height: 24px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.day:hover {
+}
+
+.day_after_today {
+  width: 50px;
+  height: 50px;
+  line-height: 24px;
+  color: grey;
 }
 
 .current-day {
-  background-color: #1bf50c;
   width: 40px;
   height: 40px;
   line-height: 28px;
   border-radius: 2%;
-  color: white;
+
+  color: rgb(16, 221, 221);
 }
 .selected-day {
   background-color: yellow;
@@ -97,10 +112,15 @@ tr {
   max-width: 3.6em;
 }
 
-.label-month,
+.label-month {
+  font-size: 0.6em;
+  cursor: pointer;
+  margin-left: 100px;
+}
 .label-year {
   font-size: 0.6em;
   cursor: pointer;
+  margin-left: 5px;
 }
 
 .div3 {
@@ -110,7 +130,7 @@ tr {
 
 .container1 {
   height: 8px;
-  background-color: rgb(10, 199, 252);
+  background-color: rgb(4, 240, 47);
   display: inline-block;
   padding: 0px;
   margin: 0px;
@@ -129,6 +149,39 @@ tr {
   margin-top: 8px;
 }
 
-.nextButton {
+.arrow {
   float: right;
+  box-sizing: border-box;
+  height: 15px;
+  width: 15px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0px 2px 2px 0px;
+  transform: rotate(-45deg);
+  transition: border-width 100ms ease-in-out;
+  margin-right: 10px;
+}
+
+.arrow:hover {
+  border-bottom-width: 6px;
+  border-right-width: 6px;
+}
+
+.arrow2 {
+  float: left;
+  box-sizing: border-box;
+  height: 15px;
+  width: 15px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0px 2px 2px 0px;
+  transform: rotate(-225deg);
+  transition: border-width 150ms ease-in-out;
+  margin-left: 10px;
+  margin-top: 8px;
+}
+
+.arrow2:hover {
+  border-bottom-width: 6px;
+  border-right-width: 6px;
 }
